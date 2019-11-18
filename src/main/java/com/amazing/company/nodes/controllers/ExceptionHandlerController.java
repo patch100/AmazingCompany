@@ -10,13 +10,13 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class ExceptionHandlerController extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(value = {NodeNotFoundException.class})
-    public ResponseEntity handleNodeNotFound(RuntimeException e) {
-        return ResponseEntity.notFound().build();
-    }
+  @ExceptionHandler(value = {NodeNotFoundException.class})
+  public ResponseEntity handleNodeNotFound(RuntimeException e) {
+    return ResponseEntity.notFound().build();
+  }
 
-    @ExceptionHandler(value = {BadRequestException.class})
-    public ResponseEntity handleBadRequest(RuntimeException e) {
-        return ResponseEntity.badRequest().build();
-    }
+  @ExceptionHandler(value = {BadRequestException.class})
+  public ResponseEntity handleBadRequest(RuntimeException e) {
+    return ResponseEntity.badRequest().build();
+  }
 }
