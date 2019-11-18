@@ -7,5 +7,4 @@ COPY ${DEPENDENCY}/META-INF /app/META-INF
 COPY ${DEPENDENCY}/BOOT-INF/classes /app
 ADD target/${JAR_FILE} /usr/share/myapp.jar
 EXPOSE 8080
-EXPOSE 8000
 ENTRYPOINT ["java","-jar","/usr/share/myapp.jar"]
