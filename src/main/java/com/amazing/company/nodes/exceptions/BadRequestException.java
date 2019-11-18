@@ -1,4 +1,3 @@
 package com.amazing.company.nodes.exceptions;
 
-public class BadRequestException extends RuntimeException {
-}
+public class BadRequestException extends RuntimeException {}
