@@ -1,12 +1,9 @@
 package com.amazing.company.nodes.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -22,7 +19,7 @@ public class Node {
     @JsonIgnore
     private Node root;
 
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "parent_id")
     @JsonIgnore
     private Node parent;
@@ -61,7 +58,9 @@ public class Node {
         return root;
     }
 
-    public void setRoot(Node root) { this.root = root; }
+    public void setRoot(Node root) {
+        this.root = root;
+    }
 
     public Node getParent() {
         return parent;
