@@ -9,14 +9,14 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.amazing.company</groupId>
-	<artifactId>nodes</artifactId>
+	<artifactId>the-amazing-node-company</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Amazing Company</name>
 	<description>Tradeshift Coding Challenge</description>
 
 	<properties>
 		<java.version>13</java.version>
-		<docker.image.prefix>springio</docker.image.prefix>
+		<docker.image.prefix>crumpledhat</docker.image.prefix>
 	</properties>
 
 	<dependencies>

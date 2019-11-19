@@ -1,10 +1,19 @@
+FROM openjdk:13-jdk-alpine as build
+WORKDIR /workspace/app
+
+COPY mvnw .
+COPY .mvn .mvn
+COPY pom.xml .
+COPY src src
+
+RUN ./mvnw install -DskipTests
+RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
+
 FROM openjdk:13-jdk-alpine
 VOLUME /tmp
-ARG DEPENDENCY=target/dependency
-ARG JAR_FILE
-COPY ${DEPENDENCY}/BOOT-INF/lib /app/lib
-COPY ${DEPENDENCY}/META-INF /app/META-INF
-COPY ${DEPENDENCY}/BOOT-INF/classes /app
-ADD target/${JAR_FILE} /usr/share/myapp.jar
+ARG DEPENDENCY=/workspace/app/target/dependency
+COPY --from=build ${DEPENDENCY}/BOOT-INF/lib /app/lib
+COPY --from=build ${DEPENDENCY}/META-INF /app/META-INF
+COPY --from=build ${DEPENDENCY}/BOOT-INF/classes /app
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","/usr/share/myapp.jar"]
+ENTRYPOINT ["java","-cp","app:app/lib/*","com.amazing.company.nodes.AmazingCompanyApplication"]
