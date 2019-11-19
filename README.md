@@ -2,31 +2,51 @@
 API created for the Amazing Company for managing Nodes and their descendants
 
 Build with
-`mvnw.cmd install dockerfile:build`
+`docker build -t crumpledhat/the-amazing-node-company .`
 
 Run container with
-`docker run -p 8080:8080 -t springio/nodes`
+`docker run -p 8080:8080 -t crumpledhat/the-amazing-node-company`
 
 API Documentation
 
 An example of a single node
 ```
 {
-  "id":2,
-  "root":1,
-  "parent":1,
-  "height":1,
-  "children":[3,4]  
+    "id": 1,
+    "height": 0,
+    "parent": null,
+    "root": 1,
+    "children": [
+        2,
+        3,
+        4
+    ]
 }
 ```
 
 Any time multiple nodes are returned, paging is used and nodes will be found inside "content"
 ```
 {
-  "content": {
-    "nodes": {
-    }
-  }
+    "content": [
+        {
+            "id": 1,
+            "height": 0,
+            "parent": null,
+            "root": 1,
+            "children": [
+                2,
+                3,
+                4
+            ]
+        },
+        {
+            "id": 2,
+            "height": 1,
+            "parent": 1,
+            "root": 1,
+            "children": []
+        }
+    ]
 }
 ```
 
